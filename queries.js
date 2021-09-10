@@ -1,15 +1,9 @@
 const { Pool } = require('pg');
 
-const host = process.env.DS20HOST;
-const user = process.env.DS20USER;
-const password = process.env.DS20PASS;
-const database = process.env.DS20DB;
+const connectionString = process.env.DATABASE_URL;
 
 const config = {
-    host,
-    user,
-    password,
-    database,
+    connectionString,
     port: 5432,
     max: 30,
     min: 0,
