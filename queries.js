@@ -1,9 +1,9 @@
 const { Pool } = require('pg');
 
-const host = process.env.HOST;
-const user = process.env.USER;
-const password = process.env.PASS;
-const database = process.env.DB;
+const host = process.env.DS20HOST;
+const user = process.env.DS20USER;
+const password = process.env.DS20PASS;
+const database = process.env.DS20DB;
 
 const config = {
     host,
@@ -18,31 +18,18 @@ const config = {
 }
 const pool = new Pool(config);
 
-const getTable = async(items) => {
+const getTable = async(tablePrefix, lang) => {
 
-    pool.connect((error_connection,client,release) => {
-        if (error_connection) {
-            console.error(error_connection);
-            release()
-            pool.end()
-            throw error_connection;
-        }
-        const SQLQuery = {
-            text: `SELECT * FROM $1;`,
-            values: [items]
-        }
-        client.query(SQLQuery, (error_query,result) => {
-            if (error_query) {
-                console.error(error_query);
-                release()
-                pool.end()
-                throw error_query
-            }
-            return result.rows
-            release()
-            pool.end()
-        })
-    })
+    const table = tablePrefix+lang;
+    const SQLQuery = `SELECT * FROM ${table};`
+
+    try {
+        const registers = await pool.query(SQLQuery)
+        return registers.rows
+    } catch (e) {
+        console.error(e);
+        return e
+    }
 
 };
 
