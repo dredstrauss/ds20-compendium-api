@@ -15,9 +15,12 @@ const server = http.createServer(async(req,res) => {
             try {
                 const registers = await getTable(tablePrefix,queryParam.lang);
                 res.writeHead(200, { 'Content-Type' : 'application/json' });
-                res.end(JSON.stringify(registers));
+                if (registers.error) {
+                    res.end(registers.message);
+                } else {
+                    res.end(JSON.stringify(registers));
+                }
             } catch (e) {
-                console.error(e);
                 res.writeHead(500)
                 res.end('Server error (500)')
             }
