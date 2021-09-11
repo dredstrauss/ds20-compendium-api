@@ -3,6 +3,8 @@ const url = require('url');
 const { getTable } = require('./queries');
 
 const port = process.env.PORT;
+const lang = process.env.LANGUAGE;
+const text = require('./lang.json');
 
 const server = http.createServer(async(req,res) => {
     const queryParam = url.parse(req.url,true).query;
@@ -24,7 +26,7 @@ const server = http.createServer(async(req,res) => {
 
     else {
         res.writeHead(404)
-        res.end('Not found')
+        res.end(text.index.message1[lang])
     }
 
 });

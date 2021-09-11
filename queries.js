@@ -1,5 +1,8 @@
 const { Pool } = require('pg');
 
+const lang = process.env.LANGUAGE;
+const text = require('./lang.json');
+
 const config = {
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -22,8 +25,10 @@ const getTable = async(tablePrefix, lang) => {
         const registers = await pool.query(SQLQuery)
         return registers.rows
     } catch (e) {
-        console.error(e);
-        return e
+        return {
+            error: true,
+            message: `${text.queries.getTable.message1[lang]}`
+        }
     }
 
 };

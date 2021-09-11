@@ -1,0 +1,22 @@
+{
+    "queries": {
+        "getTable": {
+            "message1": {
+                "eng" : "Nothing found",
+                "esp" : "No se encontró nada"
+            }
+        }
+    },
+    "index": {
+        "weapons": {
+            "message1": {
+                "eng" : "Server error (500)",
+                "esp" : "Error de servidor (500)"
+            }
+        },
+        "message1": {
+            "eng" : "Not found (404)",
+            "esp" : "No encontrado (404)"
+        }
+    }
+}
