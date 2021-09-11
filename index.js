@@ -13,7 +13,7 @@ const server = http.createServer(async(req,res) => {
         const tablePrefix = req.url.slice(1).split('?')[0]+'_';
         if (req.method == 'GET') {
             try {
-                const registers = await getTable(tablePrefix,queryParam.lang);
+                let registers = await getTable(tablePrefix,queryParam);
                 res.writeHead(200, { 'Content-Type' : 'application/json' });
                 if (registers.error) {
                     res.end(registers.message);
