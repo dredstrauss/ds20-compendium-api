@@ -22,7 +22,7 @@ const server = http.createServer(async(req,res) => {
                 }
             } catch (e) {
                 res.writeHead(500)
-                res.end('Server error (500)')
+                res.end(text.index.weapons.message1[lang])
             }
         }
     }
