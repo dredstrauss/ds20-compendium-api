@@ -1,9 +1,10 @@
 const { Pool } = require('pg');
 
-const connectionString = process.env.DATABASE_URL;
-
 const config = {
-    connectionString,
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    },
     port: 5432,
     max: 30,
     min: 0,
