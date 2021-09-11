@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 const { getTable } = require('./queries');
 
-const port = 3000
+const port = process.env.PORT;
 
 const server = http.createServer(async(req,res) => {
     const queryParam = url.parse(req.url,true).query;
