@@ -22,6 +22,11 @@ const server = http.createServer(async(req,res) => {
         }
     }
 
+    else {
+        res.writeHead(404)
+        res.end('Not found')
+    }
+
 });
 
 server.listen(port, () => console.log(`Server listening on port: ${port}`))
