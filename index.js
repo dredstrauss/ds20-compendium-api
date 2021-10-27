@@ -3,7 +3,7 @@ const url = require('url');
 const { getTable } = require('./queries');
 
 const port = process.env.PORT;
-const lang = process.env.LANGUAGE;
+const lang = process.env.LANGUAGE || 'esp';
 const text = require('./lang.json');
 
 const server = http.createServer(async(req,res) => {
