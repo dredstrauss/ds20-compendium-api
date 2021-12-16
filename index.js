@@ -9,7 +9,7 @@ const text = require('./lang.json');
 const server = http.createServer(async(req,res) => {
     const queryParam = url.parse(req.url,true).query;
 
-    if (req.url.startsWith('/weapons') || req.url.startsWith('/armor')) {
+    if (req.url.startsWith('/weapons') || req.url.startsWith('/armor') || req.url.startsWith('/resources')) {
         const tablePrefix = req.url.slice(1).split('?')[0]+'_';
         if (req.method == 'GET') {
             try {
